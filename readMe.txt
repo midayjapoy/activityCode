@@ -2,7 +2,7 @@
 * To run the program make sure that you've installed Typescript compiler to your terminal.
 	- to do that install 'npm install -g typescript' on your terminal.
 
-* Once done, run 'tsc Main.ts' and  'node Main.ts'.
+* Once done, run 'tsc Main.ts' and  'node Main.js'.
 
 * At first the will prompt a message asking to choose or any letter combination from  X, Y, Z.
 	- please take note that only Letter/Letters from X Y Z should be the input to avoid errors.

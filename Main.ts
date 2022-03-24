@@ -9,7 +9,7 @@ const read_line_interface = readline .createInterface({
 
 
 read_line_interface.question("Combine or choose from X, Y, Z:  ", function(str: string) {
-	read_line_interface.question("Choose a size between 3 and 5:  ", function(num: number) {
+	read_line_interface.question("Size (must be odd number):  ", function(num: number) {
 
 		const letterPrinter = new LetterPrinter(str, num);
 		letterPrinter.print();

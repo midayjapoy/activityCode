@@ -1,34 +1,45 @@
 
-const x: string[] = ["O O", " O ", "O O"];
-const y: string[] = ["O O", " O ", " O "];
-const z: string[] = ["OOO", " O ", "OOO"];
-const X: string[] = ["O   O"," O O ", "  O  ", " O O ", "O   O"];
-const Y: string[] = ["O   O", " O O ", "  O  ", "  O  ","  O  "];
-const Z: string[] = ["OOOOO", "   O ", "  O  ", " O   ", "OOOOO"];
-
-
-export class LetterPrinter{
-
-constructor (public letters: string, public size: number) {}
-
-print(): void {
-        
-        var i: number, j: number;
-        
-        if(this.size == 3) {
-            for (i = 0; i < this.letters.length; i++) {
-                for (j = 0; j < eval(this.letters[i].toLowerCase()).length; j++) {
-                	console.log(eval(this.letters[i].toLowerCase())[j])                                 
-                }
-            }
-    	} else if (this.size == 5) {
-    		for (i = 0; i < this.letters.length; i++) {
-                for (j = 0; j < eval(this.letters[i].toUpperCase()).length; j++) {
-                	console.log(eval(this.letters[i].toUpperCase())[j])                                 
-            	 }   
-         	}
-    	} else {
-    		console.log('Size can be only 3 or 5.');
-    	}
+export class LetterPrinter {
+    constructor(public letters: string, public size: number, public placement?: string) {
+        this.letters = letters,
+        this.size = size,
+        this.placement = placement
     }
-}        
+
+    print (): void {
+
+        var result: string = "";
+        var position: string = ""; 
+
+        for (let i = 0; i < this.letters.length; i++) {
+            for (let row = 0; row < this.size; row++) {
+                for (let col = 0; col < this.size; col++) {
+                    if(this.letters[i] == 'x') {
+                        if (row == col || (row + col) == (this.size - 1)) {
+                            position = "O"
+                        } else {
+                            position = " "
+                        }
+                    } if (this.letters[i] == 'y') {
+                        if (row == col && row < Math.floor(this.size/2) || (row + col) == (this.size - 1) && row <= Math.floor(this.size/2) || col == Math.floor(this.size/2) && row >  Math.floor(this.size/2)) {
+                            position = "O"
+                        } else {
+                            position = " "
+                        }
+                    } if (this.letters[i] == 'z') {
+                        if (row == (this.size - 1) || row == 0 || (row + col) == (this.size - 1)) {
+                            position = "O"
+                        } else {
+                            position = " "
+                        }
+                    }
+                    result += position
+                }
+                result += "\n"
+            }    
+        }
+
+        console.log(result)
+    }
+}
+

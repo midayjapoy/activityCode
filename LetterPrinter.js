@@ -1,36 +1,51 @@
 "use strict";
 exports.__esModule = true;
 exports.LetterPrinter = void 0;
-var x = ["O O", " O ", "O O"];
-var y = ["O O", " O ", " O "];
-var z = ["OOO", " O ", "OOO"];
-var X = ["O   O", " O O ", "  O  ", " O O ", "O   O"];
-var Y = ["O   O", " O O ", "  O  ", "  O  ", "  O  "];
-var Z = ["OOOOO", "   O ", "  O  ", " O   ", "OOOOO"];
 var LetterPrinter = /** @class */ (function () {
-    function LetterPrinter(letters, size) {
+    function LetterPrinter(letters, size, placement) {
         this.letters = letters;
         this.size = size;
+        this.placement = placement;
+        this.letters = letters,
+            this.size = size,
+            this.placement = placement;
     }
     LetterPrinter.prototype.print = function () {
-        var i, j;
-        if (this.size == 3) {
-            for (i = 0; i < this.letters.length; i++) {
-                for (j = 0; j < eval(this.letters[i].toLowerCase()).length; j++) {
-                    console.log(eval(this.letters[i].toLowerCase())[j]);
+        var result = "";
+        var position = "";
+        for (var i = 0; i < this.letters.length; i++) {
+            for (var row = 0; row < this.size; row++) {
+                for (var col = 0; col < this.size; col++) {
+                    if (this.letters[i] == 'x') {
+                        if (row == col || (row + col) == (this.size - 1)) {
+                            position = "O";
+                        }
+                        else {
+                            position = " ";
+                        }
+                    }
+                    if (this.letters[i] == 'y') {
+                        if (row == col && row < Math.floor(this.size / 2) || (row + col) == (this.size - 1) && row <= Math.floor(this.size / 2) || col == Math.floor(this.size / 2) && row > Math.floor(this.size / 2)) {
+                            position = "O";
+                        }
+                        else {
+                            position = " ";
+                        }
+                    }
+                    if (this.letters[i] == 'z') {
+                        if (row == (this.size - 1) || row == 0 || (row + col) == (this.size - 1)) {
+                            position = "O";
+                        }
+                        else {
+                            position = " ";
+                        }
+                    }
+                    result += position;
                 }
+                result += "\n";
             }
         }
-        else if (this.size == 5) {
-            for (i = 0; i < this.letters.length; i++) {
-                for (j = 0; j < eval(this.letters[i].toUpperCase()).length; j++) {
-                    console.log(eval(this.letters[i].toUpperCase())[j]);
-                }
-            }
-        }
-        else {
-            console.log('Size can be only 3 or 5.');
-        }
+        console.log(result);
     };
     return LetterPrinter;
 }());
